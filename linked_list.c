@@ -20,6 +20,7 @@ void printList(struct Node* head_node); //function to print the list and check t
 void cleanList(struct Node** head_node); // function to delete all the elements of the list
 void deleteKey(struct Node** head_node,int key); // function to delete the first key occurrence in the list
 void deleteAtPosition(struct Node** head_node, int position); // function to delete a node at a given position
+void insertAtPosition(struct Node** head_node,int position, int new_key);// function to insert a node at a given position
 
 //////////////////////////////////////////////////
 
@@ -62,8 +63,19 @@ int main(int argc, char const *argv[]) {
   deleteAtPosition(&head, 0);// delete the head, list : 7 -> 4 -> 2 -> NULL
   printList(head);
   printf("\n" );
+  insertAtPosition(&head,0,10);
+  printList(head);// list : 10 -> 7 -> 4 -> 2 -> NULL
+  printf("\n" );
+  insertAtPosition(&head,2,8);
+  printList(head);// list : 10 -> 7 -> 8 -> 4 -> 2 -> NULL
+  printf("\n" );
+  insertAtPosition(&head,4,3);
+  printList(head);// list : 10 -> 7 -> 8 -> 4 -> 3 -> 2 NULL
+  printf("\n" );
+  insertAtPosition(&head, 8 ,0); // position greater than the number of elements
   deleteAtPosition(&head, 6 ); // position that is greater than the number of elements
   cleanList(&head);
+  insertAtPosition(&head,0, 0);// empty list
   printList(head);
   printf("\n" );
 
@@ -210,3 +222,36 @@ void deleteAtPosition(struct Node** head_node, int position){
 }
 
 //////////////////////////////////////////////////
+
+void insertAtPosition(struct Node** head_node,int position, int new_key) {
+  // First we will check some special cases
+  // In the case the list is empty
+  if ((*head_node) == NULL) {
+    printf("The list is empty!! \n");
+    return;
+  }else{
+    // In the case we want to place the new node at the first position of the list
+    // we could just call the function insertAtBegining
+    if(position == 0){
+      insertAtBegining(head_node,new_key);
+      return;
+    }else{
+      // If we want to insert the element in another position we
+      // we also need to find out what is the position of the previous node of the node to be deleted
+      struct Node* temp1 = (*head_node); // temp1 is a temporary variable to help find the  right position
+      int i = 0;
+      for ( i = 0;temp1 != NULL && i < position - 1; i++) {
+        // i < position - 1 ==> makes the loop stop when temp1 is the previous node at (n -1)th position, and temp1->next have the reference of the rest of the list
+        temp1 = temp1->next;
+      }
+      if (temp1 == NULL || temp1->next == NULL ) {
+        printf("this position does not exist in the list\n");
+        return;
+      }else{
+        struct Node* temp2 = createElement(new_key);// creating the new element
+        temp2->next = temp1->next; // recovering the pointer of the list
+        temp1->next = temp2; // recovering the previous elements
+      }
+    }
+  }
+}
