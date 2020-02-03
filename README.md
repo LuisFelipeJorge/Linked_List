@@ -1,6 +1,6 @@
 #Linked Lists
 
-A linked list is an abstract data structure, it is a linear representation of a data set. We could understand the structure as a collection of **nodes**, connecteds in a sequence, each node stores two pieces of information, the first is the *key or data*, this value is the type of information we want to analyze, it can be an integer, a character or any other other type of data; the second is a pointer, which saves the address to the position of another node in memory, we could see it as a link that connects all the elements within the structure.
+A linked list is an abstract data structure, it is a linear representation of a data set. We could understand the structure as a collection of **nodes**, connecteds in a sequence, each node stores two pieces of information, the first is the *key or data*, this value is the type of information we want to analyze, it can be an integer, a character or any other type of data; the second is a pointer, which saves the address to the position of another node in memory, we could see it as a link that connects all the elements within the structure.
 
 ![Linked List representation](linkedListFigure.png)
 
