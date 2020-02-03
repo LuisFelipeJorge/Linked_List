@@ -21,6 +21,9 @@ void cleanList(struct Node** head_node); // function to delete all the elements 
 void deleteKey(struct Node** head_node,int key); // function to delete the first key occurrence in the list
 void deleteAtPosition(struct Node** head_node, int position); // function to delete a node at a given position
 void insertAtPosition(struct Node** head_node,int position, int new_key);// function to insert a node at a given position
+void printListR(struct Node* head_node);// function to print the list by a recursive method
+void printListReverse(struct Node* head_node);//function to print the list on reverse by a recursive method
+void reverseList(struct Node** head_node); // function to reverse the list
 
 //////////////////////////////////////////////////
 
@@ -70,7 +73,12 @@ int main(int argc, char const *argv[]) {
   printList(head);// list : 10 -> 7 -> 8 -> 4 -> 2 -> NULL
   printf("\n" );
   insertAtPosition(&head,4,3);
-  printList(head);// list : 10 -> 7 -> 8 -> 4 -> 3 -> 2 NULL
+  printListR(head);// list : 10 -> 7 -> 8 -> 4 -> 3 -> 2 NULL
+  printf("\n" );
+  printListReverse(head);// reverse
+  printf("\n" );
+  reverseList(&head);
+  printListR(head);
   printf("\n" );
   insertAtPosition(&head, 8 ,0); // position greater than the number of elements
   deleteAtPosition(&head, 6 ); // position that is greater than the number of elements
@@ -254,4 +262,54 @@ void insertAtPosition(struct Node** head_node,int position, int new_key) {
       }
     }
   }
+}
+
+//////////////////////////////////////////////////
+
+void printListR(struct Node* head_node){
+  if (head_node == NULL) {
+    //base case
+    return;
+  }else{
+    printf("%d ",head_node->key);
+    printListR(head_node->next);
+  }
+}
+
+//////////////////////////////////////////////////
+
+void printListReverse(struct Node* head_node){
+  if (head_node == NULL) {
+    //base case
+    return;
+  }else{
+    printListReverse(head_node->next);
+    printf("%d ",head_node->key);
+    // the printf o function will only be called after the return of the recursion
+    // with this, the first element to be printed will be last
+    // the list will be printed on reverse
+  }
+}
+
+//////////////////////////////////////////////////
+
+void reverseList(struct Node** head_node) {
+  struct Node* prev;
+  struct Node* curr;
+  struct Node* next;
+  // pointers to auxiliate in the process
+  // prev --> save the reference of the previous Node
+  // curr --> save the reference of the current Node
+  // next --> save the reference of the next Node
+
+  // At the first iteration
+  curr = (*head_node);
+  prev = NULL; // the head will will start pointing to NULL
+  while (curr != NULL ) {
+    next = curr->next; // receive the reference of the next Node
+    curr->next = prev;// changing the reference of the pointer
+    prev = curr; // passing to the next element
+    curr = next; // passing to the next element
+  }
+  (*head_node) = prev; // changing the head reference to the end of the list
 }
