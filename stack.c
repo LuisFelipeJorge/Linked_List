@@ -110,7 +110,7 @@ void cleanStack(struct Node** head_node) {
 //////////////////////////////////////////////////////////
 
 void printStack(struct Node* head_node) {
-  if (head_node == NULL) {
+  if (isEmpty(&head_node)) {
     printf("The Stack is empty\n" );
   }else{
     while (head_node != NULL) {
@@ -128,7 +128,7 @@ int pop(struct Node** head_node){
   */
   // First we will check some special cases
   // In the case the stack is empty :
-  if((*head_node) == NULL){
+  if(isEmpty(head_node)){
     printf("The Stack is empty!! \n");
     return INT_MIN;
   }else{
@@ -143,7 +143,7 @@ int pop(struct Node** head_node){
 //////////////////////////////////////////////////////////
 
 int top(struct Node** head_node){
-  if((*head_node) == NULL){
+  if(isEmpty(head_node)){
     printf("The Stack is empty!! \n");
     return INT_MIN;
   }else{
@@ -151,3 +151,11 @@ int top(struct Node** head_node){
     return aux;
   }
 }
+
+//////////////////////////////////////////////////////////
+
+int isEmpty(struct Node** head_node){
+    return !(*head_node);// check if the stack is empty or not .
+}
+
+//////////////////////////////////////////////////////////
