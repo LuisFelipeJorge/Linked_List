@@ -24,10 +24,26 @@ int top(struct Node** head_node);// Returns which is the top element of the stac
 int isEmpty(struct Node** head_node); //Assess whether the "stack" is empty or not.
 // Auxiliary functions that we have used to implement a linked list:
 struct Node* newNode(int new_key); // Creates a new element.
+void cleanStack(struct Node** head_node); // free the memory allocated
+void printStack(struct Node* head_node) ;// function to print the elemen of the stack, iterative approach
 
 //////////////////////////////////////////////////////////
 
 int main(int argc, char const *argv[]) {
+  //testing the push function
+  struct Node* head = NULL; // the first element
+  printStack(head);
+  head = newNode(4);
+  printf("\n" );
+  push(&head, 2);
+  push(&head, 5);
+  push(&head, 7);
+  push(&head, 3);
+  push(&head, 0);
+  printStack(head);
+  printf("\n" );
+  cleanStack(&head);
+  printStack(head);
 
   return 0;
 }
@@ -44,12 +60,50 @@ struct Node* newNode(int new_key){
 
 //////////////////////////////////////////////////////////
 
+void push(struct Node** head_node, int new_key){
+  /*
+     We have two different approaches to adding a new element to the "stack". We could add the element at the end or at the beginning of the structure,
+     but we have to analyze the consequences of that choice.
+     If we choose to add at the end of the "stack", as a "linked list" does not allow random access to memory, we would have to go through all the elements,
+     pointer to pointer, until we finally reach the end and then add the new element.
+     This increases the time complexity of the operation to O(n), as we need to check all the elements before adding a new one.
+     But, otherwise, if we choose to insert the new element always at the beginning of the "stack",
+     the algorithm will always make the same number of movements to add the elements, therefore, we can guarantee a time complexity of O (1).
+  */
+  // First, we need to allocate the extra memory for the new node.
+  struct Node* temp = (struct Node *)malloc(sizeof(struct Node));
+  temp->key = new_key; // Inserting the key value.
+  temp->link = (*head_node);// Updating the pointer value for the next element in the stack.
+  (*head_node) = temp;// Updating the head node.
+}
+
+//////////////////////////////////////////////////////////
+
+void cleanStack(struct Node** head_node) {
+  struct Node* aux; // auxiliar variable to help in the process
+  aux = (*head_node); // store the reference of the head_node
+  struct Node* next;// contains the reference to the next elements of the stack
+  while (aux != NULL) {
+    // when aux == NULL, we are in the last element of the stack
+    next = aux->link; // save the address of the others elements of the stack
+    free(aux); // releasing the memory in the adress aux
+    aux = next; // walking through the stack
+  }
+  (*head_node) = NULL;// returning to an empty stack
+}
 
 
 //////////////////////////////////////////////////////////
 
-
-//////////////////////////////////////////////////////////
-
+void printStack(struct Node* head_node) {
+  if (head_node == NULL) {
+    printf("The list is empty\n" );
+  }else{
+    while (head_node != NULL) {
+      printf("%d ",head_node->key ); // printing the element
+      head_node = head_node->link; //walking in the list, at each loop the reference changes to the next element
+    }
+  }
+}
 
 //////////////////////////////////////////////////////////
