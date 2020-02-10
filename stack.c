@@ -42,9 +42,16 @@ int main(int argc, char const *argv[]) {
   push(&head, 0);
   printStack(head);
   printf("\n" );
+  //testing the pop function
+  int p = 0;
+  p = pop(&head);
+  printf("Popped element = %d\n", p );
+  p = pop(&head);
+  printf("Popped element = %d\n", p );
   cleanStack(&head);
   printStack(head);
-
+  p = pop(&head);
+  printf("Popped element = %d\n", p );
   return 0;
 }
 
@@ -97,12 +104,32 @@ void cleanStack(struct Node** head_node) {
 
 void printStack(struct Node* head_node) {
   if (head_node == NULL) {
-    printf("The list is empty\n" );
+    printf("The Stack is empty\n" );
   }else{
     while (head_node != NULL) {
       printf("%d ",head_node->key ); // printing the element
       head_node = head_node->link; //walking in the list, at each loop the reference changes to the next element
     }
+  }
+}
+
+//////////////////////////////////////////////////////////
+
+int pop(struct Node** head_node){
+  /*  To keep the time complexity as a constant and also to meet the "LIFO" constraint,
+      we delete elements from the beginning of the stack.
+  */
+  // First we will check some special cases
+  // In the case the stack is empty :
+  if((*head_node) == NULL){
+    printf("The Stack is empty!! \n");
+    return EXIT_FAILURE;
+  }else{
+    struct Node* temp = (*head_node); // temporary variable that saves the pointer to the stack .
+    int aux = temp->key; // store the value that will be popped up.
+    (*head_node) = temp->link;// Updating the head node .
+    free(temp); // free memory
+    return (aux);
   }
 }
 
