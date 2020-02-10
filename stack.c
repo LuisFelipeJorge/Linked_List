@@ -1,5 +1,6 @@
 #include <stdio.h> // Standard C language header
 #include <stdlib.h> // contains functions that will help to dynamically allocate memory, such as malloc
+#include <limits.h> // contains the INT_MIN value.
 
 // we will implement a "stack' data structure through the functions and applications
 //that we have already seen in our previous linked list implementation.
@@ -48,11 +49,17 @@ int main(int argc, char const *argv[]) {
   printf("Popped element = %d\n", p );
   p = pop(&head);
   printf("Popped element = %d\n", p );
+  // testing the top function
+  int t = 0;
+  t = top(&head);
+  printf("Top element = %d\n", t );
   cleanStack(&head);
   printStack(head);
   p = pop(&head);
   printf("Popped element = %d\n", p );
-  return 0;
+  t = top(&head);
+  printf("Top element = %d\n", t );
+return 0;
 }
 
 //FUNCTIONS
@@ -123,7 +130,7 @@ int pop(struct Node** head_node){
   // In the case the stack is empty :
   if((*head_node) == NULL){
     printf("The Stack is empty!! \n");
-    return EXIT_FAILURE;
+    return INT_MIN;
   }else{
     struct Node* temp = (*head_node); // temporary variable that saves the pointer to the stack .
     int aux = temp->key; // store the value that will be popped up.
@@ -134,3 +141,13 @@ int pop(struct Node** head_node){
 }
 
 //////////////////////////////////////////////////////////
+
+int top(struct Node** head_node){
+  if((*head_node) == NULL){
+    printf("The Stack is empty!! \n");
+    return INT_MIN;
+  }else{
+    int aux = (*head_node)->key;
+    return aux;
+  }
+}
