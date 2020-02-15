@@ -46,10 +46,17 @@ int main(int argc, char const *argv[]) {
   printQueue(q);
   enQueue(q,7);// front -> 2 -> 1 -> 5 -> 7 -> NULL <- rear
   printQueue(q);
+  int check = isEmpty(q);
+  printf("Check : %d \n", check );
+  int f = front(q);
+  printf("Front : %d\n",f );
   deQueue(q);// front -> 2 -> 1 -> 5 -> NULL <- rear
   printQueue(q);
   cleanQueue(q);
   printQueue(q);
+  check = isEmpty(q);
+  printf("Check : %d \n", check );
+  f = front(q);
   free(q);
   return 0;
 }
@@ -144,6 +151,24 @@ void deQueue(struct Queue* q){
         free(temp);// free memory
     }
   }
+}
+
+////////////////////////////////////////////////////////////
+
+int front(struct Queue* q){
+  // In the case that the queue is empty
+  if (q->front == NULL) {
+    printf("The Queue is empty\n");
+    return INT_MIN;
+  }else{
+    return q->front->key; //auxiliary variable to store the key value at the front of the queue.
+  }
+}
+
+////////////////////////////////////////////////////////////
+
+int isEmpty(struct Queue* q){
+    return !(q->front && q->rear);
 }
 
 ////////////////////////////////////////////////////////////
