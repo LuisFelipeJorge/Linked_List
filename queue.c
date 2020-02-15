@@ -100,8 +100,10 @@ void cleanQueue(struct Queue* q) {
 ////////////////////////////////////////////////////////////
 
 void printQueue(struct Queue* q) {
-  if (q->front == NULL ) {
+  //if (q->front == NULL ) {
+  if (isEmpty(q)) {
     printf("The Queue is empty\n" );
+    return;
   }else{
     struct Node* temp = q->front;
     while (temp != NULL) {
@@ -123,7 +125,8 @@ void enQueue(struct Queue* q, int new_key){
   */
   struct Node* temp = createNode(new_key); // temporary variable to help allocate the extra memory for the new node .
   // In the case the queue is empty, front and rear must point to NULL
-  if (q->rear == NULL){
+//  if (q->rear == NULL){
+  if (isEmpty(q)) {
     q->front = q->rear = temp;
     return;
   }else{
@@ -137,7 +140,8 @@ void enQueue(struct Queue* q, int new_key){
 
 void deQueue(struct Queue* q){
   // In the case the queue is empty, front and rear must point to the same node
-  if (q->front == NULL) {
+//  if (q->front == NULL) {
+  if (isEmpty(q)) {
     printf("The Queue is empty\n");
     return;
   }else{
@@ -157,7 +161,8 @@ void deQueue(struct Queue* q){
 
 int front(struct Queue* q){
   // In the case that the queue is empty
-  if (q->front == NULL) {
+  //if (q->front == NULL) {
+  if (isEmpty(q)) {
     printf("The Queue is empty\n");
     return INT_MIN;
   }else{
