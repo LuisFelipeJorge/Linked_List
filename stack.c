@@ -2,7 +2,7 @@
 #include <stdlib.h> // contains functions that will help to dynamically allocate memory, such as malloc
 #include <limits.h> // contains the INT_MIN value.
 
-// we will implement a "stack' data structure through the functions and applications
+// we will implement a "stack" data structure through the functions and applications
 //that we have already seen in our previous linked list implementation.
 
 // Defining the data structure

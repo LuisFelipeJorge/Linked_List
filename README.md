@@ -13,3 +13,7 @@ Performing these actions in a list is a relatively easy task, we are able to ins
 Lists also have some disadvantages when compared to arrays, as they do not allow random access to elements, for example, in a list, if we want to obtain the value on the nth node, because the elements are connected by pointers and do not need to be allocated in the same memory location, we would need to go through all the nodes before reaching the nth position. Since lists store two values, data and pointers, they also need larger memory blocks to save the information for each element. We could sumaryse it by:
 - Random access is not allowed, we need to access the elements sequentially, which limits the search algorithms.
 - Extra memory space required due to pointers for each element.
+
+We can use linked lists to implement other data structures, which have the same constructions as lists, but differ in the way elements are placed and removed from the structure. Here, we will see 2 examples, **Stacks** and **Queues**.
+
+The *"Stacks"* must obey the **LIFO** condition (Last In First Out) to place and remove their elements, to facilitate understanding, we could imagine a real pile of dishes, where we place the dishes on top of each other. If we want to take one of these dishes, we need to remove the dish at the top of the pile, which was the last dish added, that is, so that the last item added is the first item removed.
