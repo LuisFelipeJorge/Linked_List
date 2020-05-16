@@ -1,4 +1,4 @@
-  #include <stdio.h> // Standard C language header
+#include <stdio.h> // Standard C language header
 #include <stdlib.h> // contains functions that will help to dynamically allocate memory, such as malloc
 #include <limits.h> // contains the INT_MIN value.
 

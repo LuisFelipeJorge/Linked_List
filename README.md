@@ -1,4 +1,4 @@
-#Linked Lists
+# Linked Lists
 
 A linked list is an abstract data structure, it is a linear representation of a data set. We could understand the structure as a collection of **nodes**, connecteds in a sequence, each node stores two pieces of information, the first is the *key or data*, this value is the type of information we want to analyze, it can be an integer, a character or any other type of data; the second is a pointer, which saves the address to the position of another node in memory, we could see it as a link that connects all the elements within the structure.
 
@@ -19,3 +19,5 @@ We can use linked lists to implement other data structures, which have the same 
 The *"Stacks"* must obey the **LIFO** condition (Last In First Out) to place and remove their elements, to facilitate understanding, we could imagine a real pile of dishes, where we place the dishes on top of each other. If we want to take one of these dishes, we need to remove the dish at the top of the pile, which was the last dish added, that is, so that the last item added is the first item removed.
 
 Otherwise, the *"Queues"* must follow the **FIFO** restriction (First In, First Out) to insert and remove elements. We can see this as a queue of people in a Music Show, the first person to enter the queue must be the first to enter the show,it means to leave the queue , and the last person in the queue must wait until everyone in front of her enters the show before she can enter the show.
+
+To better understand the peculiarities of each of the data structures, please consult the available source code.
