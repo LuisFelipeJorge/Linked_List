@@ -2,7 +2,7 @@
 # Edit at https://www.gitignore.io/?templates=c,c++,python,jupyternotebooks
 
 ### C ###
-executables/
+
 # Prerequisites
 *.d
 
@@ -34,6 +34,7 @@ executables/
 *.dylib
 
 # Executables
+executables/
 *.exe
 *.out
 *.app
